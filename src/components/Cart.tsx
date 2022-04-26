@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import DiscogsContext from "../data/DiscogsData";
 import BarLoader from "./BarLoader/BarLoader";
-
+import Paypal from "./Paypal";
 const Cart = () => {
   const { onAdd, onMinus, onRemove, cartItems, setCartItems } =
     useContext(DiscogsContext);
@@ -9,12 +10,16 @@ const Cart = () => {
 
   useEffect(() => {
     if (cartItems) setIsLoading(false);
+    console.log(cartItems);
   }, [cartItems]);
+  const checkPrice = (num: any) => {
+    if (num.lowest_price) return num;
+  };
   const calculateItems = (total: number, num: any) => {
     return (total += num.qty);
   };
   const calculateTotal = (total: number, num: any) => {
-    return (total += num.lowest_price);
+    return (total += num.lowest_price * num.qty);
   };
 
   return isLoading ? (
@@ -107,8 +112,8 @@ const Cart = () => {
                   </span>
                 </div>
               ))}
-            <a
-              href="#"
+            <Link
+              to="/"
               className="flex font-semibold text-indigo-600 text-sm mt-10"
             >
               <svg
@@ -118,7 +123,7 @@ const Cart = () => {
                 <path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
               </svg>
               Continue Shopping
-            </a>
+            </Link>
           </div>
 
           <div id="summary" className="w-1/4 px-8 py-10">
@@ -161,6 +166,7 @@ const Cart = () => {
                 <span>Total cost</span>
                 <span>${cartItems?.reduce(calculateTotal, 0)}</span>
               </div>
+              <Paypal />
               <button className="bg-peri-200 font-semibold hover:text-peri-300 py-3 hover:bg-white hover:border text-sm text-white uppercase w-full">
                 Checkout
               </button>

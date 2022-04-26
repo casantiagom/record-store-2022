@@ -3,26 +3,27 @@ import { Link, useNavigate } from "react-router-dom";
 // @ts-ignore
 import { useAuth } from "../contexts/AuthContext";
 
-const Login = () => {
+const ForgotPassword = () => {
   const emailRef = useRef<HTMLInputElement | null>(null);
-  const passwordRef = useRef<HTMLInputElement | null>(null);
-  const passwordConfirmRef = useRef<HTMLInputElement | null>(null);
+
   // @ts-ignore
-  const { login } = useAuth();
+  const { resetPassword } = useAuth();
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
   const navigate = useNavigate();
 
   async function handleSubmit(e: any) {
     e.preventDefault();
 
     try {
+      setMessage("");
       setError("");
       setLoading(true);
-      await login(emailRef.current?.value, passwordRef.current?.value);
-      navigate("/");
+      await resetPassword(emailRef.current?.value);
+      setMessage("Check your inbox for instructions");
     } catch {
-      setError("Failed to log in");
+      setError("Failed to reset password");
     }
     setLoading(false);
   }
@@ -47,34 +48,23 @@ const Login = () => {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="username"
               >
-                Username
+                Email
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="username"
                 type="text"
-                placeholder="Username"
+                ref={emailRef}
+                placeholder="Email"
               ></input>
             </div>
             <div className="mb-6">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <input
-                className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                id="password"
-                type="password"
-                placeholder="******************"
-              ></input>
               <button
                 disabled={loading}
                 type="submit"
                 className="w-full text-center py-3  bg-green text-black hover:bg-green-dark focus:outline-none my-1inline-block text-sm px-4 leading-none border rounded text-peri-200 border-peri-200 hover:border-transparent hover:text-white hover:bg-peri-200 mt-4 lg:mt-0 mr-6"
               >
-                Log In
+                Reset password
               </button>
             </div>
             <div className="flex items-center justify-between">
@@ -87,9 +77,9 @@ const Login = () => {
               </Link>
               <Link
                 className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                to="/forgot-password"
+                to="/login"
               >
-                Forgot Password?
+                Log In
               </Link>
             </div>
           </form>
@@ -102,4 +92,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;
