@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DiscogsContext from "../data/DiscogsData";
+import Album from "./Album";
 import BarLoader from "./BarLoader/BarLoader";
 import Paypal from "./Paypal";
+
 const Cart = () => {
   const { onAdd, onMinus, onRemove, cartItems, setCartItems } =
     useContext(DiscogsContext);
@@ -74,7 +76,7 @@ const Cart = () => {
 
                       <a
                         href="#"
-                        className="hover:text-red-500 text-gray-500 text-xs"
+                        className="hover:text-red-500 text-gray-500 text-sm"
                         onClick={() => onRemove(album)}
                       >
                         Remove
@@ -85,7 +87,9 @@ const Cart = () => {
                     <svg
                       className="fill-current text-gray-600 w-3"
                       viewBox="0 0 448 512"
-                      onClick={() => onMinus(album)}
+                      onClick={() => {
+                        if (album?.qty > 1) onMinus(album);
+                      }}
                     >
                       <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
                     </svg>
@@ -136,14 +140,7 @@ const Cart = () => {
                 {cartItems?.reduce(calculateItems, 0)}
               </span>
             </div>
-            <div>
-              <label className="font-medium inline-block mb-3 text-sm uppercase">
-                Shipping
-              </label>
-              <select className="block p-2 text-gray-600 w-full text-sm">
-                <option>Standard shipping - $10.00</option>
-              </select>
-            </div>
+
             <div className="py-10">
               <label
                 htmlFor="promo"
@@ -164,12 +161,9 @@ const Cart = () => {
             <div className="border-t mt-8">
               <div className="flex font-semibold justify-between py-6 text-sm uppercase">
                 <span>Total cost</span>
-                <span>${cartItems?.reduce(calculateTotal, 0)}</span>
+                <span>${cartItems?.reduce(calculateTotal, 0).toFixed(2)}</span>
               </div>
               <Paypal />
-              <button className="bg-peri-200 font-semibold hover:text-peri-300 py-3 hover:bg-white hover:border text-sm text-white uppercase w-full">
-                Checkout
-              </button>
             </div>
           </div>
         </div>

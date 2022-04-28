@@ -20,6 +20,7 @@ export const DiscogsProvider: FC = ({ children }) => {
 
   const onAdd = (album: any) => {
     const exist = cartItems.find((x: any) => x.id === album.id);
+
     if (exist) {
       setCartItems(
         cartItems.map((x: { id: number }) =>

@@ -65,7 +65,10 @@ const AlbumDetail = (props: any) => {
                 Price: ${albumDetail?.lowest_price}
               </div>
               <button
-                onClick={() => onAdd(albumDetail)}
+                onClick={() => {
+                  onAdd(albumDetail);
+                  alert("Album Added");
+                }}
                 className="bg-peri-200 hover:bg-peri-100 text-white font-bold py-2 px-4 rounded"
               >
                 Add to Cart
