@@ -31,7 +31,7 @@ const Login = () => {
     <div>
       <div className="flex justify-center">
         <div className="w-full max-w-md h-24 ">
-          <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
+          <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 justify-center">
             {error && (
               <div role="alert">
                 <div className="bg-red-500 text-white text-center font-bold rounded-t px-4 py-2">
@@ -42,6 +42,7 @@ const Login = () => {
                 </div>
               </div>
             )}
+            <h1 className="mb-8 text-3xl text-center">Log In</h1>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -83,7 +84,7 @@ const Login = () => {
                 type="button"
                 to="/signup"
               >
-                Sign In
+                Sign Up
               </Link>
               <Link
                 className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
@@ -93,9 +94,6 @@ const Login = () => {
               </Link>
             </div>
           </form>
-          <p className="text-center text-gray-500 text-xs">
-            &copy;2022 carlos santiago
-          </p>
         </div>
       </div>
     </div>

@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+# Record Store
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is and E-commerce site that you can buy music records,search albums, see details of each album, add it to cart, check it out with paypal, register as a user.
 
-## Available Scripts
+## Languages and tools used
 
-In the project directory, you can run:
+This project was build in react.js and use the following tools:
+-react.js
 
-### `npm start`
+- react hooks(useContext, useState, useRef)
+  -typescript
+  -tailwind css
+  -react-paypal components
+  -axios
+  -react router
+  -firebase
+  -dicogs API
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Running site demo
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Detailed Description
 
-### `npm test`
+-The site uses the discogs API(https://www.discogs.com/developers) that is a Database of music records, artists, albums, labels. the data is pulled out with axios and is accessible by the entire app through createContext hook.
+-You can create a user with password that is managed by Firebase, Log in and Log out.
+-It has a cart, the state that contains the info about the item in the cart is stored in the localStorage.
+-It has search capability, you can search albums by artists or album.
+-When you click on the album it goes to the details of that album(songs list, artist name and photo, and "add to cart" button )
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Authors
 
-### `npm run build`
+Carlos Santiago
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## GIF of the running project
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Hat tip to anyone whose code was used
+- Inspiration
+- etc

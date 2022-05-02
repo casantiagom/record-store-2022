@@ -73,7 +73,7 @@ const ForgotPassword = () => {
                 type="button"
                 to="/signup"
               >
-                Sign In
+                Sign Up
               </Link>
               <Link
                 className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
@@ -83,9 +83,7 @@ const ForgotPassword = () => {
               </Link>
             </div>
           </form>
-          <p className="text-center text-gray-500 text-xs">
-            &copy;2022 carlos santiago
-          </p>
+          <p className="text-center text-gray-500 text-xs"></p>
         </div>
       </div>
     </div>
